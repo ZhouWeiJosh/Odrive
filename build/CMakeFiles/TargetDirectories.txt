@@ -1,0 +1,3 @@
+/home/chowjz/Odrive/build/CMakeFiles/endpoint_init_test.dir
+/home/chowjz/Odrive/build/CMakeFiles/edit_cache.dir
+/home/chowjz/Odrive/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/endpoint_init_test.dir/main.cpp.o CMakeFiles/endpoint_init_test.dir/endpoint.cpp.o -o endpoint_init_test  -lusb-1.0 
