@@ -1,23 +1,18 @@
 #include "endpoint.hpp"
-#include <libusb-1.0/libusb.h>
-#include <iostream>
-#include <cstdint>		// Provides fixed-width integer types
-#include <cstring>
-#include <sstream>
-#include <string>
-#include <iomanip>
+
+odrive_endpoint::odrive_endpoint() {}
+
+odrive_endpoint::~odrive_endpoint()
+{
+	if  (libusb_context_ != NULL)
+	{
+		libusb_exit(libusb_context_);
+		libusb_context_ = NULL;
+	}
+}
 
 
-#define ODRIVE_OK	0
-#define ODRIVE_ERROR	1
-
-#define ODRIVE_USB_VENDORID	0x1209
-#define ODRIVE_USB_PRODUCTID	0x0D32
-
-libusb_context* libusb_context_ = NULL;
-libusb_device_handle *odrive_handle_ = NULL;
-
-int init(uint64_t serialNumber)
+int odrive_endpoint::init(uint64_t serialNumber)
 {
 	libusb_device **usb_device_list; // A pointer to pointer that shows the list of devices
 	
@@ -141,14 +136,4 @@ int init(uint64_t serialNumber)
 	libusb_free_device_list(usb_device_list, 1);
 
 	return ret;
-}if (libusb_context_ == NULL)
-        {
-                int result = libusb_init(&libusb_context_);
-                if (result != LIBUSB_SUCCESS)
-                {
-                std::cerr << "Failed to initialize libusb: " << libusb_error_name(result) << std::endl;
-                return result;
-                }
-        }
-
-
+}
